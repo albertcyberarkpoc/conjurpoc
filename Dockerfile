@@ -1,3 +1,4 @@
+FROM  registry2.itci.conjur.net/ubuntu-fips:18.04 as builder
 FROM ubuntu:20.04
 
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -41,7 +42,12 @@ COPY . .
 
 RUN ln -sf /opt/conjur-server/bin/conjurctl /usr/local/bin/
 
+RUN mkdir /usr/local/ssl/
+COPY --from=builder /usr/local/ssl/ /usr/local/ssl/
+
 ENV RAILS_ENV production
+ENV OPENSSL_FIPS 1
+ENV PATH "/usr/local/ssl/bin:${PATH}"
 
 # The Rails initialization expects the database configuration
 # and data key to exist. We supply placeholder values so that
