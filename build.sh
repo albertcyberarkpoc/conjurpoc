@@ -38,6 +38,8 @@ function flatten() {
   docker export $container | docker import \
     --change "EXPOSE 80" \
     --change "ENV RAILS_ENV=production" \
+    --change "ENV OPENSSL_FIPS=1" \
+    --change "ENV PATH=/usr/local/ssl/bin:${PATH}" \
     --change "WORKDIR /opt/conjur-server" \
     --change 'ENTRYPOINT ["conjurctl"]' \
     - $image
