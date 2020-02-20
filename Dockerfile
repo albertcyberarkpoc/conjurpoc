@@ -42,7 +42,7 @@ COPY . .
 
 RUN ln -sf /opt/conjur-server/bin/conjurctl /usr/local/bin/
 
-RUN mkdir /usr/local/ssl/
+RUN mkdir -p /usr/local/ssl/
 COPY --from=builder /usr/local/ssl/ /usr/local/ssl/
 
 ENV RAILS_ENV production
