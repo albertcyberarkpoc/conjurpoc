@@ -20,6 +20,7 @@ function finish {
   echo '-----'
 
   {
+    pod_name=$(retrieve_conjur_pod)
     if [[ "$pod_name" != "" ]]; then
       echo "Grabbing output from $pod_name"
       echo '-----'
@@ -128,7 +129,7 @@ function launchConjurMaster() {
     sed -e "s#{{ CONJUR_AUTHN_K8S_TEST_NAMESPACE }}#$CONJUR_AUTHN_K8S_TEST_NAMESPACE#g" |
     kubectl create -f -
 
-  conjur_pod=$(kubectl get pods -l app=conjur-authn-k8s -o=jsonpath='{.items[].metadata.name}')
+  conjur_pod=$(retrieve_conjur_pod)
 
   wait_for_it 300 "kubectl describe po $conjur_pod | grep Status: | grep -q Running"
 
@@ -165,8 +166,7 @@ function loadConjurPolicies() {
   kubectl exec $cli_pod -- conjur policy load root /policies/policy.${TEMPLATE_TAG}yml
 
   # init ca certs
-  conjur_pod=$(kubectl get pod -l app=conjur-authn-k8s --no-headers | grep Running | awk '{ print $1 }')
-  kubectl exec $conjur_pod -- rake authn_k8s:ca_init["conjur/authn-k8s/minikube"]
+  kubectl exec $(retrieve_conjur_pod) -- rake authn_k8s:ca_init["conjur/authn-k8s/minikube"]
 }
 
 function launchInventoryServices() {
@@ -186,6 +186,10 @@ function runTests() {
   conjurcmd mkdir -p /opt/conjur-server/output
 
   echo "./bin/cucumber K8S_VERSION=1.7 PLATFORM=kubernetes --no-color --format pretty --format junit --out /opt/conjur-server/output -r ./cucumber/kubernetes/features/step_definitions/ -r ./cucumber/kubernetes/features/support/world.rb -r ./cucumber/kubernetes/features/support/hooks.rb -r ./cucumber/kubernetes/features/support/conjur_token.rb --tags ~@skip ./cucumber/kubernetes/features" | cucumbercmd -i bash
+}
+
+retrieve_conjur_pod() {
+  kubectl get pods -l app=conjur-authn-k8s -o=jsonpath='{.items[].metadata.name}'
 }
 
 main
