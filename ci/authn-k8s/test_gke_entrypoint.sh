@@ -166,7 +166,14 @@ function loadConjurPolicies() {
   kubectl exec $cli_pod -- conjur authn login -u admin -p $API_KEY
 
   # load policies
-  kubectl exec $cli_pod -- bash -c "RESTCLIENT_LOG=stdout conjur policy load root /policies/policy.${TEMPLATE_TAG}yml"
+  n=0
+  until [ $n -ge 5 ]
+  do
+    kubectl exec $cli_pod -- bash -c "RESTCLIENT_LOG=stdout conjur policy load root /policies/policy.${TEMPLATE_TAG}yml" && break  # substitute your command here
+    n=$[$n+1]
+    sleep 5
+  done
+  
 
   # init ca certs
   kubectl exec $(retrieve_conjur_pod) -- rake authn_k8s:ca_init["conjur/authn-k8s/minikube"]
