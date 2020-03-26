@@ -131,7 +131,7 @@ function launchConjurMaster() {
 
   conjur_pod=$(retrieve_conjur_pod)
 
-  wait_for_it 300 "kubectl describe po $conjur_pod | grep Status: | grep -q Running"
+  kubectl wait --for=condition=Ready pod/$conjur_pod --timeout=5m
 
   # wait for the 'conjurctl server' entrypoint to finish
   local wait_command="while ! curl --silent --head --fail localhost:80 > /dev/null; do sleep 1; done"
@@ -142,10 +142,12 @@ function launchConjurMaster() {
 
 function copyNginxSSLCert() {
   nginx_pod=$(kubectl get pods -l app=nginx-authn-k8s -o=jsonpath='{.items[].metadata.name}')
-  cucumber_pod=$(kubectl get pods -l app=cucumber-authn-k8s -o=jsonpath='{.items[].metadata.name}')
+  conjur_pod=$(retrieve_conjur_pod)
+
+  kubectl wait --for=condition=Ready pod/$conjur_pod --timeout=10s
 
   kubectl cp $nginx_pod:/etc/nginx/nginx.crt ./nginx.crt
-  kubectl cp ./nginx.crt $cucumber_pod:/opt/conjur-server/nginx.crt
+  kubectl cp ./nginx.crt $conjur_pod:/opt/conjur-server/nginx.crt
 }
 
 function copyConjurPolicies() {
