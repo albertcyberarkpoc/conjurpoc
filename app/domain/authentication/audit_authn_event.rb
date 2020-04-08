@@ -2,7 +2,7 @@
 
 module Authentication
 
-  AuditEvent = CommandClass.new(
+  AuditAuthnEvent = CommandClass.new(
     dependencies: {
       role_cls:  ::Role,
       audit_log: ::Authentication::AuditLog
