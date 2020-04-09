@@ -17,7 +17,9 @@ WORKDIR /src/opt/conjur/project
 COPY Gemfile ./
 COPY Gemfile.lock ./
 
-RUN bundle config set deployment 'true' && bundle
+RUN bundle config set deployment 'true' && \
+    bundle config set path 'vendor/bundle' && \
+    bundle
 
 COPY . .
 ADD debify.sh /
