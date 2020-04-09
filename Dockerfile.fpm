@@ -19,9 +19,6 @@ COPY Gemfile.lock ./
 
 RUN bundle config set deployment 'true' && bundle
 
-RUN mkdir -p .bundle
-RUN cp /usr/local/bundle/config .bundle/config
-
 COPY . .
 ADD debify.sh /
 
