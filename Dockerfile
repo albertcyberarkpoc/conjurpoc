@@ -36,7 +36,7 @@ RUN mkdir -p $TMP_DIR \
 COPY Gemfile \
      Gemfile.lock ./
 
-RUN bundle --without test development
+RUN bundle config set without 'development test' && bundle
 
 COPY . .
 

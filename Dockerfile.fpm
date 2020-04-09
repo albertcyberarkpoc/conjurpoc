@@ -2,7 +2,6 @@
 FROM @@image@@
 
 RUN apt-get update -y && \
-    apt-get purge -y ruby2.2 ruby2.2-dev && \
     apt-get install -y ruby2.5 \
                        ruby2.5-dev \
                        zlib1g-dev \
@@ -18,7 +17,8 @@ WORKDIR /src/opt/conjur/project
 COPY Gemfile ./
 COPY Gemfile.lock ./
 
-RUN bundle --deployment
+RUN bundle config set deployment 'true' && bundle
+
 RUN mkdir -p .bundle
 RUN cp /usr/local/bundle/config .bundle/config
 
