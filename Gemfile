@@ -16,7 +16,7 @@ gem 'jbuilder', '~> 2.7.0'
 gem 'nokogiri', '>= 1.8.2'
 gem 'puma', '~> 3.12'
 gem 'rack', '~> 2.0'
-gem 'rails', '~> 5.2'
+gem 'rails', '~> 5.2', '>= 5.2.4.3'
 gem 'rake'
 # gem 'sprockets', '~> 3.7.0', '>= 3.7.2'
 
@@ -27,9 +27,9 @@ gem 'pg'
 gem 'sequel', '4.49.0'
 gem 'sequel-pg_advisory_locking'
 gem 'sequel-postgres-schemata', require: false
-gem 'sequel-rails'
+gem 'sequel-rails', '>= 1.1.0'
 
-gem 'activesupport'
+gem 'activesupport', '>= 5.2.4.3'
 gem 'base32-crockford'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'gli', require: false
@@ -49,7 +49,7 @@ gem 'ruby_dep', '= 1.3.1'
 gem 'conjur-api', github: 'cyberark/conjur-api-ruby', branch: 'master'
 gem 'conjur-policy-parser', '>= 3.0.4',
   github: 'cyberark/conjur-policy-parser', branch: 'master'
-gem 'conjur-rack', '~> 4'
+gem 'conjur-rack', '~> 4', '>= 4.0.0'
 gem 'conjur-rack-heartbeat'
 gem 'rack-rewrite'
 
@@ -83,14 +83,14 @@ gem 'websocket-client-simple'
 
 # authn-oidc
 gem 'jwt'
-gem 'openid_connect'
+gem 'openid_connect', '>= 1.1.8'
 
 group :development, :test do
   gem 'aruba'
   gem 'csr'
   gem 'ci_reporter_rspec'
-  gem 'conjur-cli', '~> 6.1'
-  gem 'conjur-debify', require: false
+  gem 'conjur-cli', '~> 6.2', '>= 6.2.2'
+  gem 'conjur-debify', '>= 1.11.4', require: false
   gem 'cucumber'
   gem 'database_cleaner'
   gem 'json_spec'
@@ -99,12 +99,12 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'debase'
-  gem 'rails-controller-testing'
+  gem 'rails-controller-testing', '>= 1.0.4'
   gem 'rails_layout'
   gem 'rake_shared_context'
   gem 'rspec'
   gem 'rspec-core', '~> 3.0'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '>= 4.0.0'
   gem 'spring'
   gem 'spring-commands-cucumber'
   gem 'spring-commands-rspec'
