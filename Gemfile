@@ -86,12 +86,12 @@ gem 'jwt'
 gem 'openid_connect'
 
 group :development, :test do
-  gem 'aruba'
+  gem 'aruba', '>= 1.0.1'
   gem 'csr'
   gem 'ci_reporter_rspec'
   gem 'conjur-cli', '~> 6.1'
   gem 'conjur-debify', require: false
-  gem 'cucumber'
+  gem 'cucumber', '>= 4.0.0'
   gem 'database_cleaner'
   gem 'json_spec'
   gem 'net-ssh'
