@@ -78,7 +78,7 @@ group :production do
 end
 
 # authn-k8s
-gem 'kubeclient'
+gem 'kubeclient', '>= 4.6.0'
 gem 'websocket-client-simple'
 
 # authn-oidc
