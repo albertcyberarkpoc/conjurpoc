@@ -15,8 +15,8 @@ gem 'iso8601'
 gem 'jbuilder', '~> 2.7.0'
 gem 'nokogiri', '>= 1.8.2'
 gem 'puma', '~> 3.12'
-gem 'rack', '~> 2.0'
-gem 'rails', '~> 5.2'
+gem 'rack', '~> 2.2', '>= 2.2.6.2'
+gem 'rails', '~> 6.1', '>= 6.1.7.1'
 gem 'rake'
 # gem 'sprockets', '~> 3.7.0', '>= 3.7.2'
 
@@ -29,7 +29,7 @@ gem 'sequel-pg_advisory_locking'
 gem 'sequel-postgres-schemata', require: false
 gem 'sequel-rails'
 
-gem 'activesupport'
+gem 'activesupport', '>= 6.1.7.1'
 gem 'base32-crockford'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'gli', require: false
@@ -49,7 +49,7 @@ gem 'ruby_dep', '= 1.3.1'
 gem 'conjur-api', github: 'cyberark/conjur-api-ruby', branch: 'master'
 gem 'conjur-policy-parser', '>= 3.0.4',
   github: 'cyberark/conjur-policy-parser', branch: 'master'
-gem 'conjur-rack', '~> 4'
+gem 'conjur-rack', '~> 4', '>= 4.0.0'
 gem 'conjur-rack-heartbeat'
 gem 'rack-rewrite'
 
@@ -89,7 +89,7 @@ group :development, :test do
   gem 'aruba'
   gem 'csr'
   gem 'ci_reporter_rspec'
-  gem 'conjur-cli', '~> 6.1'
+  gem 'conjur-cli', '~> 6.2', '>= 6.2.6'
   gem 'conjur-debify', require: false
   gem 'cucumber'
   gem 'database_cleaner'
