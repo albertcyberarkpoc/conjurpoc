@@ -13,10 +13,10 @@ gem 'base58'
 gem 'http', '~> 4.2.0'
 gem 'iso8601'
 gem 'jbuilder', '~> 2.7.0'
-gem 'nokogiri', '>= 1.8.2'
-gem 'puma', '~> 3.12'
-gem 'rack', '~> 2.0'
-gem 'rails', '~> 5.2'
+gem 'nokogiri', '>= 1.13.9'
+gem 'puma', '~> 4.3', '>= 4.3.12'
+gem 'rack', '~> 3.0', '>= 3.0.0'
+gem 'rails', '~> 6.1', '>= 6.1.7.3'
 gem 'rake'
 # gem 'sprockets', '~> 3.7.0', '>= 3.7.2'
 
@@ -29,7 +29,7 @@ gem 'sequel-pg_advisory_locking'
 gem 'sequel-postgres-schemata', require: false
 gem 'sequel-rails'
 
-gem 'activesupport'
+gem 'activesupport', '>= 6.1.7.3'
 gem 'base32-crockford'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'gli', require: false
@@ -38,7 +38,7 @@ gem 'slosilo', '~> 2.1'
 
 # Explicitly required as there are vulnerabilities in older versions
 gem "ffi", ">= 1.9.24"
-gem "loofah", ">= 2.2.3"
+gem "loofah", ">= 2.19.1"
 
 # Installing ruby_dep 1.4.0
 # Gem::InstallError: ruby_dep requires Ruby version >= 2.2.5, ~> 2.2.
@@ -49,7 +49,7 @@ gem 'ruby_dep', '= 1.3.1'
 gem 'conjur-api', github: 'cyberark/conjur-api-ruby', branch: 'master'
 gem 'conjur-policy-parser', '>= 3.0.4',
   github: 'cyberark/conjur-policy-parser', branch: 'master'
-gem 'conjur-rack', '~> 4'
+gem 'conjur-rack', '~> 4', '>= 4.0.0'
 gem 'conjur-rack-heartbeat'
 gem 'rack-rewrite'
 
@@ -78,7 +78,7 @@ group :production do
 end
 
 # authn-k8s
-gem 'kubeclient'
+gem 'kubeclient', '>= 4.9.3'
 gem 'websocket-client-simple'
 
 # authn-oidc
@@ -86,12 +86,12 @@ gem 'jwt'
 gem 'openid_connect'
 
 group :development, :test do
-  gem 'aruba'
+  gem 'aruba', '>= 1.0.1'
   gem 'csr'
   gem 'ci_reporter_rspec'
-  gem 'conjur-cli', '~> 6.1'
+  gem 'conjur-cli', '~> 6.2', '>= 6.2.6'
   gem 'conjur-debify', require: false
-  gem 'cucumber'
+  gem 'cucumber', '>= 4.0.0'
   gem 'database_cleaner'
   gem 'json_spec'
   gem 'net-ssh'
